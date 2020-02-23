@@ -1,0 +1,164 @@
+﻿@model IEnumerable<phonebook.Models.pb>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .div-left {
+            box-shadow: 0px 8px 16px 0px cyan;
+            font-size: 14px;
+            font-family: verdana;
+            background-color: #00ddff;
+            color: darkblue;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            border-style: solid;
+            border-right-style: none;
+            border-color: white;
+            border-width: 1px;
+            margin-right: -3px;
+        }
+
+        .div-center {
+            box-shadow: 0px 8px 16px 0px cyan;
+            font-size: 14px;
+            font-family: verdana;
+            background-color: #00ddff;
+            color: darkblue;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-bottom-style: solid;
+            border-top-style: solid;
+            border-color: white;
+            border-width: 1px;
+            margin-right: -3px;
+            margin-left: -3px;
+        }
+
+        .div-right {
+            box-shadow: 0px 8px 16px 0px cyan;
+            font-size: 14px;
+            font-family: verdana;
+            background-color: #00ddff;
+            color: darkblue;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+            border-style: solid;
+            border-left-style: none;
+            border-color: white;
+            border-width: 1px;
+            margin-left: -3px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .cmd0 {
+            text-decoration: none;
+            font-family: verdana;
+            font-size: 20px;
+            margin: 2px;
+            background-color: #00ddff;
+            color: white;
+            border: solid 3px;
+            box-shadow: 0px 8px 16px 0px cyan;
+        }
+
+            .cmd0:hover {
+                background-color: white;
+                color: #00ddff;
+                border-color: #00ddff;
+            }
+
+            .cmd0:active {
+                color: blue;
+                background-color: white;
+                border-color: blue;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: relative;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: cyan;
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: white;
+            box-shadow: 0px 8px 16px 0px cyan;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>My Phonebook</h1><br />
+
+        <table style="border-style:none">
+            <tr height="100px">
+                <td width="600px">
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" name="query" class="cmd0" /><input type="submit" value="srch" class="cmd0" />
+                    }
+                </td>
+                <td style="direction:rtl"><a href="/Home/create" class="cmd0">Create</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+                    <table width=100% style="border-style:none">
+                        <tr style="height:50px">
+                            <td><div class="div-left"><b style="color:white">Id</b></div></td>
+                            <td><div class="div-center"><b style="color:white">First Name</b></div></td>
+                            <td><div class="div-center"><b style="color:white">Last Name</b></div></td>
+                            <td><div class="div-center"><b style="color:white">Phone Number</b></div></td>
+                            <td colspan="2"><div class="div-right"><b style="color:white">Email</b></div></td>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><div class="div-left">@item.id</div></td>
+                                <td><div class="div-center">@item.fname</div></td>
+                                <td><div class="div-center">@item.lname</div></td>
+                                <td><div class="div-center">@item.pnumber</div></td>
+                                <td><div class="div-center">@item.Email</div></td>
+                                <td>
+                                    <div class="div-right">
+                                        <div class="dropdown">
+                                            <span>...</span>
+                                            <div class="dropdown-content">
+                                                @Html.ActionLink("Edit", "edit", new { id = item.id }) |
+                                                @Html.ActionLink("Delete", "delete", new { id = item.id },new { onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>

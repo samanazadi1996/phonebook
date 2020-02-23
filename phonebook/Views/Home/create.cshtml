@@ -1,0 +1,73 @@
+﻿@model phonebook.Models.pb
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>create</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        input {
+            text-decoration: none;
+            font-family: verdana;
+            font-size: 20px;
+            margin: 2px;
+            background-color: #00ddff;
+            color: white;
+            border: solid 3px;
+            box-shadow: 0px 8px 16px 0px cyan;
+        }
+
+            input:hover {
+                background-color: white;
+                color: #00ddff;
+                border-color: #00ddff;
+            }
+
+            input:active {
+                color: blue;
+                background-color: white;
+                border-color: blue;
+            }
+            span{
+                color:white;
+                font-family: verdana;
+                font-size:20Px;
+                float:left;
+                margin-top:20px;
+            }
+    </style>
+</head>
+<body>
+    <h1>Create</h1><br />
+    <center>
+        <div style="width:300px;">
+            @using (Html.BeginForm())
+            {
+                <span>First Name</span><br />
+                @Html.EditorFor(model => model.fname) <br /><br />
+                <span>Last Name</span><br />
+                @Html.EditorFor(model => model.lname) <br /><br />
+                <span>Phone Number</span><br />
+                @Html.EditorFor(model => model.pnumber)<br /><br />
+                <span>Email</span><br />
+                @Html.EditorFor(model => model.Email)<br /><br />
+                <input type="submit" value="Create" />
+            }
+        </div>
+    </center>
+</body>
+</html>
